@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ĐÓNG GÓP</title>
+    <style>
+        #danh-gia {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        #danh-gia h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        #danh-gia ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #danh-gia ul li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #danh-gia ul li .avatar {
+            float: left;
+            margin-right: 10px;
+        }
+
+        #danh-gia ul li .avatar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        #danh-gia ul li .noi-dung {
+            overflow: hidden;
+        }
+
+        #danh-gia ul li .noi-dung p {
+            margin-bottom: 5px;
+        }
+
+        #danh-gia ul li .noi-dung strong {
+            font-weight: bold;
+        }
+
+        #danh-gia form {
+            margin-top: 10px;
+        }
+
+        #danh-gia form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #danh-gia form button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #9df0f5;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="danh-gia">
+        <h3>Đánh Giá</h3>
+        <ul></ul>
+        <form>
+            <input type="text" id="name" placeholder="Tên của bạn...">
+            <input type="text" id="comment" placeholder="Viết bình luận của bạn...">
+            <button type="submit">Gửi</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector("#danh-gia form");
+        const ul = document.querySelector("#danh-gia ul");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            // Lấy nội dung bình luận và tên người bình luận
+            const name = document.querySelector("#name").value;
+            const comment = document.querySelector("#comment").value;
+
+            // Tạo đối tượng Date để lấy thời gian hiện tại
+            const currentDate = new Date();
+            const timestamp = currentDate.toLocaleString();
+
+            // Tạo phần tử HTML cho bình luận mới
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <div class="noi-dung">
+                    <p><strong>${name}</strong>: ${comment}</p>
+                    <p><em>${timestamp}</em></p>
+                </div>
+            `;
+
+            // Thêm phần tử bình luận mới vào danh sách
+            ul.appendChild(li);
+          // Xóa nội dung input
+            document.querySelector("#name").value = "";
+            document.querySelector("#comment").value = "";
+        });
+    </script>
+</body>
+</html>
